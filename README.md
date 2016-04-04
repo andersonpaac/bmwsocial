@@ -11,7 +11,7 @@
 8.  Enable bootstrap
 9.  Create controller to show actions for a respective user
 10. ~~Create a database for posts and messages~~
-11. Create controller and view for bootstrap chat
+11. ~~Create controller and view for chat and posts~~
 
 
 #Optional
