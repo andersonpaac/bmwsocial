@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'posts/home'
+
+  get 'chats/posts'
+
+  get 'chats/messages'
+
   resources :auths
+  resources :chats
+  resources :posts
   root 'auths#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

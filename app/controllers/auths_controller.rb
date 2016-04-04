@@ -15,12 +15,11 @@ class AuthsController < ApplicationController
     strong = getStrong(params[:auth])
     @user = User.new(strong)
     if @user.save
-      byebug
       flash[:info] = "Created"
       redirect_to root_url
     else
-      byebug
-      redirect_to root_path
+      flash.now[:danger] = @user.errors
+      render 'new'
     end
   end
 

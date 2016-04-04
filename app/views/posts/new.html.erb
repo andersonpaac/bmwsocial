@@ -1,0 +1,11 @@
+<h1>Posts#new</h1>
+<p>Find me in app/views/chat/new.html.erb</p>
+<div class="col-md-6 col-md-offset-3">
+    <%= form_for(:chat, url: posts_path) do |f| %>
+      <%= f.label :Sender %>
+      <%= f.email_field :email, class: "form-control" %>
+      <%= f.label :content%>
+      <%= f.text_field :content %>
+      <%= f.submit "Create User", class: "btn btn-primary" %>
+      <% end %>
+</div>
