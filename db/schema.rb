@@ -11,15 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404165518) do
+ActiveRecord::Schema.define(version: 20160404201755) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "type"
     t.string   "location"
     t.datetime "expiration"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "user_id"
+    t.string   "social_username", default: "unset"
   end
+
+  add_index "actions", ["social_username"], name: "index_actions_on_social_username", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -29,5 +33,7 @@ ActiveRecord::Schema.define(version: 20160404165518) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end

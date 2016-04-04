@@ -1,28 +1,14 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#Things to do
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+1.  Setup model for User
+2.  Setup model for Action
+3.  Link User and Action in database
+4.  Create a controller and view for registering the user and the social media password
+5.  Create an index to search for on User with email
+6.  Create a column for social media username
+7.  Create an index on action for searches with social media username a.k.a handle
+8.  Enable bootstrap
+9.  Create controller to show actions for a respective user
+10. Create a database for posts and messages
+11. Create controller and view for bootstrap chat
