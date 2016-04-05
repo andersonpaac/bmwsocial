@@ -1,5 +1,5 @@
 class ActionEmailIndexFix < ActiveRecord::Migration
   def change
-    add_index :actions, :social_username, unique: true
+    add_index :actions, :social_username
   end
 end
