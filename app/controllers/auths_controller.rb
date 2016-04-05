@@ -28,6 +28,7 @@ class AuthsController < ApplicationController
         end
       end
       @display = @display.to_json
+      render json: @display
     end
   end
 
