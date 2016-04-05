@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404212357) do
+ActiveRecord::Schema.define(version: 20160404215745) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "type"
@@ -33,6 +33,24 @@ ActiveRecord::Schema.define(version: 20160404212357) do
     t.integer "action_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string   "handle"
+    t.string   "content"
+    t.datetime "when"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "handle"
+    t.string   "content"
+    t.datetime "when"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -43,5 +61,6 @@ ActiveRecord::Schema.define(version: 20160404212357) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["socialuname"], name: "index_users_on_socialuname", unique: true
 
 end
