@@ -8,11 +8,11 @@
 5.  ~~Create an index to search for on User with email~~
 6.  ~~Create a column for social media username~~
 7.  ~~Create an index on action for searches with social media username a.k.a handle~~
-8.  Enable bootstrap
+8.  ~~Enable bootstrap~~
 9.  Create controller to show actions for a respective user
 10. ~~Create a database for posts and messages~~
 11. ~~Create controller and view for chat and posts~~
-
+12. Create bootstrap based chat and adds
 
 #Optional
 

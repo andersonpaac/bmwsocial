@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20160404215745) do
 
   create_table "actions", force: :cascade do |t|
-    t.string   "type"
+    t.string   "message"
     t.string   "location"
     t.datetime "expiration"
     t.datetime "created_at",                        null: false
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20160404215745) do
     t.string   "social_username", default: "unset"
   end
 
-  add_index "actions", ["social_username"], name: "index_actions_on_social_username", unique: true
+  add_index "actions", ["social_username"], name: "index_actions_on_social_username"
 
   create_table "destinations", force: :cascade do |t|
     t.string  "name"
