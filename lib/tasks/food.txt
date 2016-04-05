@@ -6,7 +6,7 @@ sandwich
 bagels
 sandwiches
 tacos
-sandwhich
+sandwitch
 breadsticks
 bread sticks
 pizzas
@@ -98,3 +98,4 @@ baked potato
 pop tarts
 garlic knots
 cheesy gordita crunch
+food
