@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
-
   get 'posts/home'
-
   get 'chats/posts'
-
   get 'chats/messages'
-
+  post 'users/associate_twitter_handle' => "users#associate_twitter_handle"  
   resources :auths
   resources :chats
   resources :posts
