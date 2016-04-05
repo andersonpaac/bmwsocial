@@ -6,8 +6,8 @@
           <%= f.text_field :name, class: "form-control" %>
           <%= f.label :email %>
           <%= f.email_field :email%>
-          <%= f.label :socialuname, "Enter Your social media username" %>
-          <%= f.email_field :socialuname %>
+          <%= f.label :socialuname, "Enter Your social media handle" %>
+          <%= f.text_field :socialuname %>
           <%= f.label :socialpwd, "Enter Your social media password" %>
           <%= f.password_field :socialpwd %>
           <%= f.submit "Create User", class: "btn btn-primary" %>

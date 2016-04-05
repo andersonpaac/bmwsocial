@@ -27,6 +27,7 @@ class AuthsController < ApplicationController
           locations = Destination.all
           @display['type'] = 'suggestion'
           @display["destinations"] = populate(locations)
+
         end
       end
       @display = @display.to_json
@@ -41,9 +42,12 @@ class AuthsController < ApplicationController
     strong = getStrong(params[:auth])
     @user = User.new(strong)
     if @user.save
+      puts("This")
       flash[:info] = "Created"
-      redirect_to 'root_url'
+      # redirect_to 'new'
+      render 'new'
     else
+      puts("THat")
       flash.now[:danger] = @user.errors
       render 'new'
     end
@@ -66,13 +70,21 @@ private
     if params.length == 0
       return []
     end
-
+    indices = []
+    while indices.length <= 10
+      a = Random.new_seed % params.length
+      if indices.index(a).nil?
+        indices.push(a)
+      end
+    end
     retval =[]
-    for index in 0..params.length
+    for index in 0..indices.length-1
       diction = {}
       diction['id'] = index+1
-      diction['name'] = params[index]['name']
-      diction['address'] = params[index]['address']
+      object = params[indices[index]]
+      diction['name'] = object['name']
+      diction['address'] = object['address']
       retval.push(diction)
     end
+    return retval
   end

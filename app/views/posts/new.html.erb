@@ -3,7 +3,7 @@
 <div class="col-md-6 col-md-offset-3">
     <%= form_for(:chat, url: posts_path) do |f| %>
       <%= f.label :handle %>
-      <%= f.email_field :handle, class: "form-control" %>
+      <%= f.text_field :handle, class: "form-control" %>
       <%= f.label :content%>
       <%= f.text_field :content %>
       <%= f.submit "Create Post", class: "btn btn-primary" %>
