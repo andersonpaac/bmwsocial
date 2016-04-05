@@ -85,8 +85,6 @@ class NLP
     post_id = latest_post_id
     message_id = latest_message_id
   
-    # fetch new messages & posts every 5 seconds
-
     # if lets_go_action / do_you_want_action + food => restaurant suggestions
 
     # if lets_go_action / do_you_want_action + movies => theaters suggestions
@@ -95,7 +93,7 @@ class NLP
 
     while true do
       posts = Post.where("id > ?", post_id).order(created_at: :desc)
-      messages = Post.where("id > ?", message_id).order(created_at: :desc)
+      messages = Message.where("id > ?", message_id).order(created_at: :desc)
     
       if posts.count > 0
         post_id = posts.first.id
@@ -106,23 +104,59 @@ class NLP
       end
             
       if posts.count == 0 && messages.count == 0
+        sleep(2)
         next
       end
+      
+      @post_triggered_action = nil
+      @message_triggered_action = nil      
       
       if posts.count > 0        
         posts.each do |post|
           if did_user_consume_alcohol_within_3_hours?(post.content)  
-            # insert action about alcohol
-            action = Action.create({})
+            m = "It seems you were drinking within an hour, it might be dangerous to drive right now."                        
+            @post_triggered_action = Action.new({message: m, action_type: "drunk", expiration: post.created_at + 1.hour, user: post.user})                        
+            break
           end          
           if is_user_getting_food?(post.content)
+            @post_triggered_action = Action.new({action_type: "food", expiration: post.created_at + 1.hour, user: post.user})
+            break
           end                      
         end        
-      end    
+      end
       
       if messages.count > 0
-        
+        messages.each do |message|
+          if did_user_consume_alcohol_within_3_hours?(message.content)  
+            m = "It seems you were drinking within an hour, it might be dangerous to drive right now."                        
+            @message_triggered_action = Action.new({message: m, action_type: "drunk", expiration: message.created_at + 1.hour, user: message.user})            
+            break
+          end          
+          if is_user_getting_food?(post.content)
+            @message_triggered_action = Action.new({action_type: "food", expiration: message.created_at + 1.hour, user: message.user})
+            break
+          end                                
+        end
       end
+            
+      if @post_triggered_action != nil and @message_triggered_action != nil
+        if @post_triggered_action.expiration > @message_triggered_action.expiration
+          puts "inserting post triggered action"
+          @post_triggered_action.save
+        else
+          puts "inserting message triggered action"          
+          @message_triggered_action.save
+        end        
+      elsif @post_triggered_action != nil
+        puts "inserting post triggered action"        
+        @post_triggered_action.save
+      elsif @message_triggered_action != nil        
+        puts "inserting message triggered action"        
+        @message_triggered_action.save        
+      end 
+      
+      @post_triggered_action = nil
+      @message_triggered_action = nil
       
       sleep(2)        
     end

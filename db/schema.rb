@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404215745) do
+ActiveRecord::Schema.define(version: 20160405175900) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "message"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160404215745) do
     t.datetime "updated_at",                        null: false
     t.integer  "user_id"
     t.string   "social_username", default: "unset"
+    t.string   "action_type"
   end
 
   add_index "actions", ["social_username"], name: "index_actions_on_social_username"
