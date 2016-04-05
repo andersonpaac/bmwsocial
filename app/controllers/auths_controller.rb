@@ -5,34 +5,30 @@ class AuthsController < ApplicationController
   def index
   end
 
-
-
   def show
     alerts = ['drunk', 'emotion']
-    @user = User.where(:id => params[:id]).last
+    @user = User.where(:id => params[:id]).last    
     if @user.nil?
       flash[:danger] = "User not found"
       redirect_to root_url
     else
       flash[:success] = "Your user has been rendered"
-      action = Action.where(:social_username => @user.socialuname).last
-      @display = {"type" => 'None', "message" => 'None', "destinations" => [] }
+      action = Action.where("user_id = ? AND expiration > ?", @user.id, DateTime.now).order(created_at: :desc).first            
+      @display = {"type" => 'None', "message" => 'None', "destinations" => [] }      
       if action.nil?
         @display['type'] = 'None'
       else
-        if alerts.index(action.message) != nil
+        if alerts.index(action.action_type) != nil
           @display['type'] = 'alert'
           @display['message'] = action.message
         else
           locations = Destination.all
           @display['type'] = 'suggestion'
           @display["destinations"] = populate(locations)
-
         end
       end
       @display = @display.to_json
     end
-
   end
 
   def get

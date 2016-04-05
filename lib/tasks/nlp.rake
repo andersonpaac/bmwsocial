@@ -141,17 +141,13 @@ class NLP
             
       if @post_triggered_action != nil and @message_triggered_action != nil
         if @post_triggered_action.expiration > @message_triggered_action.expiration
-          puts "inserting post triggered action"
           @post_triggered_action.save
         else
-          puts "inserting message triggered action"          
           @message_triggered_action.save
         end        
       elsif @post_triggered_action != nil
-        puts "inserting post triggered action"        
         @post_triggered_action.save
       elsif @message_triggered_action != nil        
-        puts "inserting message triggered action"        
         @message_triggered_action.save        
       end 
       

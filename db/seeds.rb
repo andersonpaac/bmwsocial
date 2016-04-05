@@ -5,13 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create!(name: "Anderson Vankayala", email: "andersonpaac@gmail.com", socialuname: "@andersonpaac",
-             socialpwd: "somepassword")
-
-User.create!(name: "Roy Li", email: "royli@gmail.com", socialuname: "@royli", socialpwd: "somepass")
-
-Action.create!(message: 'drunk', social_username:'andersonpaac@gmail.com')
-Action.create!(message: 'food', social_username: 'royli@gmail.com')
+# User.create!(name: "Anderson Vankayala", email: "andersonpaac@gmail.com", socialuname: "@andersonpaac",
+#              socialpwd: "somepassword")
+#
+# User.create!(name: "Roy Li", email: "royli@gmail.com", socialuname: "@royli", socialpwd: "somepass")
+#
+# Action.create!(message: 'drunk', social_username:'andersonpaac@gmail.com')
+# Action.create!(message: 'food', social_username: 'royli@gmail.com')
 
 400.times do |n|
   restaurants_suffix = ['burger', 'deli', 'foods', 'boulangerie', 'patisserie', "'s Place'", 'restaurant', 'bakery']
